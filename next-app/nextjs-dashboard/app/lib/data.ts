@@ -14,12 +14,12 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -59,6 +59,10 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
+
+    // 자바스크립트에서는 Promise.all() or Promise.allSettled() 함수를 사용하여 여러 프로미스를
+    // 동시에 시작할 수 있다. Promise.all() 함수를 사용하여 프로미스가 완료될때까지 기다린다.
+    // 모든 프로미스가 완료되면 데이터 배열을 반환하고, 이 데이터를 변수 'data'에 할당한다.
 
     const data = await Promise.all([
       invoiceCountPromise,

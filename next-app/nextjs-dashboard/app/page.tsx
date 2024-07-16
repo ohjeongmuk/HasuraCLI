@@ -6,6 +6,7 @@ import { lusitana } from '@/app/ui/fonts';
 import styles from '@/app/ui/home.module.css';
 import { ApolloProvider } from '@apollo/client';
 import client from '@/lib/apollo';
+import { ApolloWrapper } from "./ApolloWrapper";
 
 
 export default function Page() {
